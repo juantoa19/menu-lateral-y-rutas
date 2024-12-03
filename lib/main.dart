@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
           children: [
             DrawerHeader(
               decoration: const BoxDecoration(
-                color: Color(0xFF3700B3),
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -53,17 +53,21 @@ class HomePage extends StatelessWidget {
                   const Text(
                     'Hola, Usuario!',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 0, 0, 0),
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 5),
-                  const Text(
-                    'usuario@email.com',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 14,
+                  // Usamos Flexible para evitar el desbordamiento
+                  const Flexible(
+                    child: Text(
+                      'usuario@email.com',
+                      style: TextStyle(
+                        color: Color.fromARGB(179, 0, 0, 0),
+                        fontSize: 14,
+                      ),
+                      overflow: TextOverflow.ellipsis, // Agrega puntos suspensivos si el texto es largo
                     ),
                   ),
                 ],

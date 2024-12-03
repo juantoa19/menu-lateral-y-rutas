@@ -33,14 +33,14 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Especialidades de Hamburguesas'),
-        backgroundColor: const Color(0xFF6200EA),
+        backgroundColor: const Color(0xFF6200EA),  // Color morado en el AppBar
       ),
       drawer: Drawer(
         child: Column(
           children: [
             DrawerHeader(
               decoration: const BoxDecoration(
-                color: Color(0xFF3700B3),
+                color: Color(0xFF6200EA),  // Color morado en la cabecera
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             ListTile(
-              leading: const Icon(Icons.slideshow, color: Color(0xFF6200EA)),
+              leading: const Icon(Icons.slideshow, color: Color(0xFF6200EA)),  // Color morado para el ícono
               title: const Text('Presentación'),
               onTap: () {
                 Navigator.pushReplacementNamed(context, '/presentacion');
@@ -110,7 +110,7 @@ class HomePage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF6200EA),
+                color: Color(0xFF6200EA),  // Color morado para el texto
               ),
               textAlign: TextAlign.center,
             ),
@@ -180,7 +180,7 @@ class PresentacionPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Presentación'),
-        backgroundColor: const Color(0xFF6200EA),
+        backgroundColor: const Color(0xFF6200EA),  // Color morado en el AppBar
       ),
       body: const Center(
         child: Text('Página de Presentación'),
@@ -209,14 +209,14 @@ class _PerfilPageState extends State<PerfilPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Perfil'),
-        backgroundColor: Colors.teal,
+        backgroundColor: const Color(0xFF6200EA),  // Color morado en el AppBar
       ),
       drawer: Drawer(
         child: Column(
           children: [
             DrawerHeader(
               decoration: const BoxDecoration(
-                color: Color(0xFF3700B3),
+                color: Color(0xFF6200EA),  // Color morado en la cabecera
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -246,7 +246,7 @@ class _PerfilPageState extends State<PerfilPage> {
               ),
             ),
             ListTile(
-              leading: const Icon(Icons.slideshow, color: Color(0xFF6200EA)),
+              leading: const Icon(Icons.slideshow, color: Color(0xFF6200EA)),  // Color morado para el ícono
               title: const Text('Presentación'),
               onTap: () {
                 Navigator.pushReplacementNamed(context, '/presentacion');

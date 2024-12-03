@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'presentacion.dart';  // Importa la pantalla de Presentacion
 
 class ConfiguracionesPage extends StatefulWidget {
   const ConfiguracionesPage({Key? key}) : super(key: key);
@@ -9,23 +8,24 @@ class ConfiguracionesPage extends StatefulWidget {
 }
 
 class _ConfiguracionesPageState extends State<ConfiguracionesPage> {
-  bool _notificationsEnabled = true;  // Estado para las notificaciones
-  bool _darkModeEnabled = false;      // Estado para el modo oscuro
+  bool _isNotificationsEnabled = true;
+  bool _isDarkTheme = false;
+  bool _isLocationEnabled = true;
+  bool _isAutoLoginEnabled = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Configuraciones'),
-        backgroundColor: Colors.teal,
+        backgroundColor: const Color(0xFF6200EA),  // Color morado en el AppBar
       ),
       drawer: Drawer(
         child: Column(
           children: [
-            // Cabecera personalizada
             DrawerHeader(
               decoration: const BoxDecoration(
-                color: Color(0xFF3700B3), // Color más oscuro
+                color: Color(0xFF6200EA),  // Color morado en la cabecera
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -54,12 +54,11 @@ class _ConfiguracionesPageState extends State<ConfiguracionesPage> {
                 ],
               ),
             ),
-            // Opciones del menú
             ListTile(
-              leading: const Icon(Icons.home, color: Color(0xFF6200EA)),
-              title: const Text('Inicio'),
+              leading: const Icon(Icons.slideshow, color: Color(0xFF6200EA)),  // Color morado para el ícono
+              title: const Text('Presentación'),
               onTap: () {
-                Navigator.pushReplacementNamed(context, '/inicio');
+                Navigator.pushReplacementNamed(context, '/presentacion');
               },
             ),
             ListTile(
@@ -67,13 +66,6 @@ class _ConfiguracionesPageState extends State<ConfiguracionesPage> {
               title: const Text('Perfil'),
               onTap: () {
                 Navigator.pushReplacementNamed(context, '/perfil');
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.slideshow, color: Color(0xFF6200EA)), // Cambiar el ícono
-              title: const Text('Presentación'),  // Título de la opción
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/presentacion'); // Ruta para la Presentación
               },
             ),
             ListTile(
@@ -95,52 +87,114 @@ class _ConfiguracionesPageState extends State<ConfiguracionesPage> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: <Widget>[
-            // Opción para habilitar/deshabilitar notificaciones
-            SwitchListTile(
-              title: const Text('Notificaciones'),
-              value: _notificationsEnabled,
-              onChanged: (bool value) {
+        padding: const EdgeInsets.all(16.0),
+        child: ListView(
+          children: [
+            const Text(
+              'Ajustes Generales',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF6200EA),  // Color morado para el texto
+              ),
+            ),
+            const SizedBox(height: 20),
+            _buildSwitchSetting(
+              'Notificaciones',
+              'Recibe notificaciones importantes.',
+              _isNotificationsEnabled,
+              (bool value) {
                 setState(() {
-                  _notificationsEnabled = value;
+                  _isNotificationsEnabled = value;
                 });
               },
-              secondary: const Icon(Icons.notifications),
             ),
-            const Divider(),
-            // Opción para cambiar a modo oscuro
-            SwitchListTile(
-              title: const Text('Modo oscuro'),
-              value: _darkModeEnabled,
-              onChanged: (bool value) {
+            const SizedBox(height: 20),
+            _buildSwitchSetting(
+              'Modo Oscuro',
+              'Activa el modo oscuro en la aplicación.',
+              _isDarkTheme,
+              (bool value) {
                 setState(() {
-                  _darkModeEnabled = value;
+                  _isDarkTheme = value;
                 });
               },
-              secondary: const Icon(Icons.brightness_6),
             ),
-            const Divider(),
-            // Opción para cambiar la contraseña
-            ListTile(
-              title: const Text('Cambiar contraseña'),
-              leading: const Icon(Icons.lock),
-              onTap: () {
-                // Lógica para cambiar la contraseña
+            const SizedBox(height: 20),
+            _buildSwitchSetting(
+              'Ubicación',
+              'Permite el acceso a la ubicación para mejorar la experiencia.',
+              _isLocationEnabled,
+              (bool value) {
+                setState(() {
+                  _isLocationEnabled = value;
+                });
               },
             ),
-            const Divider(),
-            // Opción para cerrar sesión
-            ListTile(
-              title: const Text('Cerrar sesión'),
-              leading: const Icon(Icons.exit_to_app),
-              onTap: () {
-                // Lógica para cerrar sesión
+            const SizedBox(height: 20),
+            _buildSwitchSetting(
+              'Inicio Automático',
+              'Permite iniciar sesión automáticamente.',
+              _isAutoLoginEnabled,
+              (bool value) {
+                setState(() {
+                  _isAutoLoginEnabled = value;
+                });
               },
             ),
+            const SizedBox(height: 30),
+            const Text(
+              'Preferencias de Cuenta',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF6200EA),  // Color morado para el texto
+              ),
+            ),
+            const SizedBox(height: 20),
+            _buildActionButton('Cambiar Contraseña', Icons.lock),
+            const SizedBox(height: 20),
+            _buildActionButton('Verificar Correo Electrónico', Icons.email),
+            const SizedBox(height: 20),
+            _buildActionButton('Eliminar Cuenta', Icons.delete, Colors.red),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildSwitchSetting(String title, String subtitle, bool value, ValueChanged<bool> onChanged) {
+    return Card(
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(16),
+        title: Text(title),
+        subtitle: Text(subtitle),
+        trailing: Switch(
+          value: value,
+          onChanged: onChanged,
+          activeColor: Color(0xFF6200EA),  // Color morado para el switch
+        ),
+      ),
+    );
+  }
+
+  Widget _buildActionButton(String title, IconData icon, [Color color = Colors.blue]) {
+    return Card(
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(16),
+        title: Text(title),
+        leading: Icon(icon, color: color),
+        onTap: () {
+          // Aquí puedes agregar lógica para estas acciones
+        },
       ),
     );
   }

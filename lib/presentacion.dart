@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'perfil.dart';
-import 'configuraciones.dart';
+import 'configuraciones.dart';  // Asegúrate de que esta importación esté presente para poder usar la página de configuraciones
 
 class Presentacion extends StatelessWidget {
   const Presentacion({Key? key}) : super(key: key);
@@ -37,11 +37,15 @@ class Presentacion extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  const Text(
-                    'usuario@email.com',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 14,
+                  // Usamos Flexible para evitar el desbordamiento
+                  const Flexible(
+                    child: Text(
+                      'usuario@email.com',
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 14,
+                      ),
+                      overflow: TextOverflow.ellipsis, // Agrega puntos suspensivos si el texto es largo
                     ),
                   ),
                 ],
