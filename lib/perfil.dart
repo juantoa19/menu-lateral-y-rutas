@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
           children: [
             DrawerHeader(
               decoration: const BoxDecoration(
-                color: Color(0xFF6200EA),  // Color morado en la cabecera
+                color: Color.fromARGB(255, 255, 255, 255),  // Color morado en la cabecera
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -53,16 +53,15 @@ class HomePage extends StatelessWidget {
                   const Text(
                     'Hola, Usuario!',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 0, 0, 0),
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 5),
                   const Text(
                     'usuario@email.com',
                     style: TextStyle(
-                      color: Colors.white70,
+                      color: Color.fromARGB(179, 0, 0, 0),
                       fontSize: 14,
                     ),
                   ),

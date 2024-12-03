@@ -18,7 +18,7 @@ class Presentacion extends StatelessWidget {
             // Cabecera personalizada
             DrawerHeader(
               decoration: const BoxDecoration(
-                color: Color(0xFF3700B3), // Color más oscuro
+                color: Color.fromARGB(255, 255, 255, 255), // Color más oscuro
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -27,11 +27,10 @@ class Presentacion extends StatelessWidget {
                     radius: 40,
                     backgroundImage: AssetImage('assets/goku.jpg'),
                   ),
-                  const SizedBox(height: 10),
                   const Text(
                     'Hola, Usuario!',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 0, 0, 0),
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -42,7 +41,7 @@ class Presentacion extends StatelessWidget {
                     child: Text(
                       'usuario@email.com',
                       style: TextStyle(
-                        color: Colors.white70,
+                        color: Color.fromARGB(179, 0, 0, 0),
                         fontSize: 14,
                       ),
                       overflow: TextOverflow.ellipsis, // Agrega puntos suspensivos si el texto es largo
